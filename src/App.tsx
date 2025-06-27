@@ -7,6 +7,7 @@ import Signup from './Pages/Signup'
 import Login from './Pages/Login'
 import LoginProtector from './RouterProtector/LoginProtector';
 import RouteProtector from './RouterProtector/RouteProtector';
+import NotFoundPage from './Pages/NotFoundPage';
 
 function App() {
   return (
@@ -21,6 +22,8 @@ function App() {
           <Route path='/registration' element={<Signup />} />
           <Route path='/login' element={<Login />} />
         </Route>
+
+        <Route path='*' element={<NotFoundPage />}></Route>
 
       </Routes>
 
