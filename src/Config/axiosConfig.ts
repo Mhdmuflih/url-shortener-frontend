@@ -3,6 +3,7 @@ import store from "../Store/store";
 import { loginSuccess, logout } from "../Store/Slice/userSlice";
 
 const baseURL = import.meta.env.VITE_BASE_URL;
+console.log(baseURL,' this is base url ');
 
 const UnProtectedAPI = axios.create({
     baseURL: baseURL
