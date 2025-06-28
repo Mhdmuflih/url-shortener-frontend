@@ -7,6 +7,7 @@ import { getUserData, urlShort } from "../Services/urlService";
 import logo from "../assets/mainLogo.jpeg";
 import { useNavigate, type NavigateFunction } from "react-router-dom";
 import type { IGetUserData, IURLShortener } from "../Interface/Interface";
+import { isValidURL } from "../Validation/urlValidation";
 
 const Home = () => {
 
@@ -35,6 +36,11 @@ const Home = () => {
 
     const handleShorten = async (event: React.FormEvent) => {
         event.preventDefault();
+
+        if (!longUrl.trim() && !isValidURL(longUrl)) {
+            toast.error("Please enter a valid URL.");
+            return;
+        }
 
         try {
             const response: IURLShortener = await urlShort(longUrl);

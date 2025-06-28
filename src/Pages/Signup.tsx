@@ -65,46 +65,50 @@ const Signup = () => {
                         Signup Form
                     </h2>
 
-                    <input
-                        type="text"
-                        placeholder="Enter Name"
-                        name="name"
-                        onChange={handleToChange}
-                        className="w-full mb-4 p-3 rounded-xl bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
-                    />
-                    {errors.name && (
-                        <p className="text-red-500 text-sm mb-3 animate-fade-in">{errors.name}</p>
-                    )}
-                    <input
-                        type="text"
-                        placeholder="Enter Mobile"
-                        name="mobile"
-                        onChange={handleToChange}
-                        className="w-full mb-4 p-3 rounded-xl bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
-                    />
-                    {errors.mobile && (
-                        <p className="text-red-500 text-sm mb-3 animate-fade-in">{errors.mobile}</p>
-                    )}
-                    <input
-                        type="email"
-                        placeholder="Enter Email"
-                        name="email"
-                        onChange={handleToChange}
-                        className="w-full mb-4 p-3 rounded-xl bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
-                    />
-                    {errors.email && (
-                        <p className="text-red-500 text-sm mb-3 animate-fade-in">{errors.email}</p>
-                    )}
-                    <input
-                        type="password"
-                        placeholder="Enter Password"
-                        name="password"
-                        onChange={handleToChange}
-                        className="w-full mb-6 p-3 rounded-xl bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
-                    />
-                    {errors.password && (
-                        <p className="text-red-500 text-sm mb-3 animate-fade-in">{errors.password}</p>
-                    )}
+                    <div className="mb-4">
+                        <input
+                            type="text"
+                            placeholder="Enter Name"
+                            name="name"
+                            onChange={handleToChange}
+                            className="w-full p-3 rounded-xl bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
+                        />
+                        {errors.name && <p className="text-red-400 text-sm mt-1 ml-1">{errors.name}</p>}
+                    </div>
+
+                    <div className="mb-4">
+                        <input
+                            type="text"
+                            placeholder="Enter Mobile"
+                            name="mobile"
+                            onChange={handleToChange}
+                            className="w-full p-3 rounded-xl bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
+                        />
+                        {errors.mobile && <p className="text-red-400 text-sm mt-1 ml-1">{errors.mobile}</p>}
+                    </div>
+
+                    <div className="mb-4">
+                        <input
+                            type="email"
+                            placeholder="Enter Email"
+                            name="email"
+                            onChange={handleToChange}
+                            className="w-full p-3 rounded-xl bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
+                        />
+                        {errors.email && <p className="text-red-400 text-sm mt-1 ml-1">{errors.email}</p>}
+                    </div>
+
+                    <div className="mb-6">
+                        <input
+                            type="password"
+                            placeholder="Enter Password"
+                            name="password"
+                            onChange={handleToChange}
+                            className="w-full p-3 rounded-xl bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
+                        />
+                        {errors.password && <p className="text-red-400 text-sm mt-1 ml-1">{errors.password}</p>}
+                    </div>
+
                     <button
                         type="submit"
                         className="w-full py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
