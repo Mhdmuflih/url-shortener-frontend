@@ -11,7 +11,7 @@ export const LoginValidation = (formData: ILogin, fieldName?: string) => {
                     errors.email = "Email Address is Required.";
                     valid = false;
                 } else if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(formData.email.trim())) {
-                    errors.email = "Please Enter a valid Email Adress.";
+                    errors.email = "Please enter a valid Email Address.";
                     valid = false;
                 }
                 break;
@@ -45,9 +45,11 @@ export const LoginValidation = (formData: ILogin, fieldName?: string) => {
         }
     }
 
-    if(fieldName) {
+    if (fieldName) {
         validateField(fieldName);
+    } else {
+        ["email", "password"].forEach(validateField);
     }
 
-    return {valid, errors};
+    return { valid, errors };
 }

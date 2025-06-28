@@ -21,7 +21,7 @@ export const SignupValidation = (formData: ISignup, fieldName?: string) => {
                     errors.mobile = "Mobile Number is Required.";
                     valid = false;
                 } else if (!/^(?!([0-9])\1{9})[1-9]\d{9}$/.test(formData.mobile.trim())) {
-                    errors.mobile = "Please Enter a valid Mobile Number.";
+                    errors.email = "Please enter a valid Email Address.";
                     valid = false;
                 }
                 break;
@@ -57,7 +57,7 @@ export const SignupValidation = (formData: ISignup, fieldName?: string) => {
                     }
                 }
                 break;
-                
+
             default:
                 break;
         }
@@ -65,6 +65,8 @@ export const SignupValidation = (formData: ISignup, fieldName?: string) => {
 
     if (fieldName) {
         validateField(fieldName);
+    } else {
+        ["name", "mobile", "email", "password"].forEach(validateField);
     }
 
     return { valid, errors };

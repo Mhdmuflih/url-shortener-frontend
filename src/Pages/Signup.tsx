@@ -20,7 +20,7 @@ const Signup = () => {
         const { name, value } = event.target;
         setFormData(prev => ({ ...prev, [name]: value }))
 
-        const validation = SignupValidation({ ...formData, [name]: value, name });
+        const validation = SignupValidation({ ...formData, [name]: value }, name);
         setErrors((prevErrors: { [key: string]: string }) => ({ ...prevErrors, [name]: validation.errors[name] || "" }));
     }
 
