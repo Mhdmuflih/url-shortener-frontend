@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import { useDispatch } from "react-redux";
 import type { Dispatch, UnknownAction } from "@reduxjs/toolkit";
 import { loginSuccess } from "../Store/Slice/userSlice";
+import { LoginValidation } from "../Validation/loginValidation";
 
 const Login = () => {
 
@@ -15,18 +16,29 @@ const Login = () => {
         email: "",
         password: ""
     });
+    const [errors, setErrors] = useState<{ [key: string]: string }>({})
 
     const handleLoginChange = (event: ChangeEvent<HTMLInputElement>) => {
-        const {name, value} = event.target;
-        setFormData(prev => ({...prev, [name]: value}));
+        const { name, value } = event.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+
+        const validation = LoginValidation({ ...formData, [name]: value }, name);
+        setErrors((prevErrors: { [key: string]: string }) => ({ ...prevErrors, [name]: validation.errors[name] || "" }));
     }
 
-    const handleLoginSubmit = async (event: React.FormEvent)=> {
+    const handleLoginSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         try {
-            console.log(formData, 'this is login formData');
+
+            const validation = LoginValidation(formData);
+            setErrors(validation.errors);
+
+            if (!validation.valid) {
+                return;
+            }
+
             const response: ILoginResponse = await UserLogin(formData);
-            if(response.success) {
+            if (response.success) {
                 dispatch(loginSuccess({
                     accessToken: response.accessToken,
                     refreshToken: response.refreshToken,
@@ -34,11 +46,11 @@ const Login = () => {
                 }))
                 toast.success(response.message);
                 navigate("/");
-            }else {
+            } else {
                 toast.error(response.message)
             }
         } catch (error: unknown) {
-            if(error instanceof Error) {
+            if (error instanceof Error) {
                 console.log(error.message);
                 toast.error(error.message);
             }
@@ -67,7 +79,9 @@ const Login = () => {
                         onChange={handleLoginChange}
                         className="w-full mb-4 p-3 rounded-xl bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
                     />
-
+                    {errors.email && (
+                        <p className="text-red-500 text-sm mb-3 animate-fade-in">{errors.email}</p>
+                    )}
                     <input
                         type="password"
                         name="password"
@@ -75,7 +89,9 @@ const Login = () => {
                         onChange={handleLoginChange}
                         className="w-full mb-6 p-3 rounded-xl bg-black text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-green-500 transition-all duration-300"
                     />
-
+                    {errors.password && (
+                        <p className="text-red-500 text-sm mb-3 animate-fade-in">{errors.password}</p>
+                    )}
                     <button
                         type="submit"
                         className="w-full py-3 bg-green-600 text-white font-semibold rounded-xl hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105"
