@@ -22,6 +22,15 @@ export const urlShort = async (longURL: string): Promise<IURLShortener> => {
     }
 }
 
+export const getShortedURL = async ():Promise<any> => {
+    try {
+        const response = await ProtectedAPI.get<any>('/url/get-urls');
+        return response.data;
+    } catch (error: any) {
+        return handleError(error)
+    }
+}
+
 export const getUserData = async (): Promise<IGetUserData> => {
         try {
         const response = await ProtectedAPI.get<IGetUserData>('/users/user-data');

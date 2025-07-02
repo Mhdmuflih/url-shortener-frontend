@@ -8,6 +8,7 @@ import Login from './Pages/Login'
 import LoginProtector from './RouterProtector/LoginProtector';
 import RouteProtector from './RouterProtector/RouteProtector';
 import NotFoundPage from './Pages/NotFoundPage';
+import ShortedURL from './Pages/ShortedURL';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
 
         <Route element={<RouteProtector />}>
           <Route path='/' element={<Home />} />
+          <Route path='/shortened-urls' element={<ShortedURL />} />
         </Route>
 
         <Route element={<LoginProtector />}>

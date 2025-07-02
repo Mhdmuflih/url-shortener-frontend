@@ -120,7 +120,14 @@ const Home = () => {
                     >
                         Shorten
                     </button>
+
                 </form>
+                <button
+                    onClick={() => navigate("/shortened-urls")}
+                    className="mt-6 px-6 py-3 bg-blue-600 rounded-xl hover:bg-blue-700 transition transform duration-300 hover:scale-105 font-semibold"
+                >
+                    View My Shortened URLs
+                </button>
 
                 {shortUrl && (
                     <div className="mt-6 text-center bg-gray-700 px-4 py-2 rounded-xl shadow animate-fade-in space-y-2">
