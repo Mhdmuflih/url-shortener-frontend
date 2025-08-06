@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
 import { getShortedURL } from "../Services/urlService";
 import { toast } from "react-toastify";
-import { useNavigate } from "react-router-dom"; // ✅ import navigate
+import { useNavigate } from "react-router-dom";
 
 const ShortedURL = () => {
     const [urls, setUrls] = useState<{ originalURL: string; shortURL: string }[]>([]);
-    const navigate = useNavigate(); // ✅
+    const navigate = useNavigate(); 
 
     useEffect(() => {
         const getAllShortedURL = async () => {
             try {
                 const response = await getShortedURL();
                 if (response.success) {
-                    setUrls(response.URLs);
-                    console.log(response.URLs);
+                    setUrls(response.URLs.reverse());
+                    console.log(response.URLs.reverse());
                 } else {
                     console.log("Failed to load URLs");
                 }
